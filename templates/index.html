@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spam Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p.description {
+            color: #666;
+            max-width: 600px;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 500px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 25px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #444;
+        }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h2>Spam Mail Detection</h2>
+    <p class="description">
+        This tool helps you detect whether a message is spam or not using a machine learning model trained on real SMS data.
+        Just paste your message below and click <strong>"Check"</strong> to find out!
+    </p>
+
+    <form method="POST">
+        <textarea name="message" rows="6" placeholder="Enter your message here..."></textarea><br><br>
+        <input type="submit" value="Check">
+    </form>
+
+    {% if prediction %}
+        <h3>Result: {{ prediction }}</h3>
+        <p class="description">
+            {% if prediction == "Spam" %}
+                Be cautious! This message looks like it might be a scam or promotional content.
+            {% else %}
+                This message appears safe and does not show typical signs of spam.
+            {% endif %}
+        </p>
+    {% endif %}
+
+    <div class="footer">
+        &copy; 2025 Spam Detector 
+    </div>
+</body>
+</html>
